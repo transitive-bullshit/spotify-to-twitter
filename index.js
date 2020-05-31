@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 'use strict'
 
 require('dotenv-safe').config()
@@ -46,12 +47,14 @@ async function main() {
 
   // select a track at random from the playlist
   const track = tracks[random.int(0, tracks.length - 1)]
-  console.log('track', JSON.stringify(track, null, 2))
+  // console.log('track', JSON.stringify(track, null, 2))
 
   // format and tweet a single track
   if (track) {
     const tweet = await formatAndTweetTrack({ twitterClient, track })
-    console.log(JSON.stringify(tweet, null, 2))
+    const tweetUrl = `https://twitter.com/${tweet.user.screen_name}/status/${tweet.id_str}`
+    console.log(tweetUrl)
+    // console.log(JSON.stringify(tweet, null, 2))
   }
 
   return tracks
@@ -62,17 +65,18 @@ function formatAndTweetTrack(opts) {
 
   const name = sanitizeTrackName(track.name)
   const url = track.external_urls.spotify
-  const albumName = track.album.name
+  // const albumName = track.album.name
   const artists = track.artists.map((artist) => artist.name)
 
   // TODO: in the future, it'd be great to map each artist to their respective
-  // twitter handle, so we could @mention them in the tweet
+  // twitter handle, so we could @mention them in the tweet.
+  // Note that spotify has this data but afaict tthey don't expose it via the API.
 
   // randomize the hashtags and emoji
   const numHashtags = random.int(0, 3)
   const hasEmoji = random.float() < 0.9
   const suffix = emoji[random.int(0, emoji.length - 1)]
-  const tags = []
+  const tags = ['#spotify']
 
   // choose some hashtags at random
   const h = hashtags.slice()
@@ -102,7 +106,7 @@ function formatAndTweetTrack(opts) {
 function sanitizeTrackName(name) {
   return name
     .replace(/\[[^\]]*\]/g, '')
-    .replace(/\([^\)]*\)/g, '')
+    .replace(/\([^)]*\)/g, '')
     .trim()
 }
 
