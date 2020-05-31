@@ -1,0 +1,13 @@
+{
+  "name": "spotify-to-twitter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv-safe": "^8.2.0",
+    "random": "^2.2.0",
+    "spotify-uri": "^2.0.0",
+    "spotify-web-api-node": "^4.0.0",
+    "twitter-lite": "^0.13.0"
+  }
+}
