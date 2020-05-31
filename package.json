@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "dotenv-safe": "^8.2.0",
+    "ora": "^4.0.4",
     "p-retry": "^4.2.0",
     "random": "^2.2.0",
     "spotify-uri": "^2.0.0",

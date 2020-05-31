@@ -7,6 +7,7 @@ const random = require('random')
 
 const spotify = require('./lib/spotify')
 const twitter = require('./lib/twitter')
+const spinner = require('./lib/spinner')
 
 const emoji = require('./lib/emoji')
 const hashtags = require('./lib/hashtags')
@@ -22,15 +23,21 @@ const twitterAccessTokenSecret = process.env.TWITTER_USER_ACCESS_TOKEN_SECRET
 const spotifyPlaylist = 'spotify:playlist:2MgkBl2rQnPdF3WZ6ciajc'
 
 async function main() {
-  const spotifyClient = await spotify.getClient({
-    accessToken: spotifyAccessToken,
-    refreshToken: spotifyRefreshToken
-  })
+  const spotifyClient = await spinner(
+    spotify.getClient({
+      accessToken: spotifyAccessToken,
+      refreshToken: spotifyRefreshToken
+    }),
+    'Initializing spotify'
+  )
 
-  const twitterClient = await twitter.getClient({
-    accessToken: twitterAccessToken,
-    accessTokenSecret: twitterAccessTokenSecret
-  })
+  const twitterClient = await spinner(
+    twitter.getClient({
+      accessToken: twitterAccessToken,
+      accessTokenSecret: twitterAccessTokenSecret
+    }),
+    'Initializing twitter'
+  )
 
   const { id: playlistId } = spotifyClient.parse(spotifyPlaylist)
 
@@ -40,21 +47,25 @@ async function main() {
   )
 
   // get all the tracks in the target playlist
-  const tracks = (await getPlaylistTracksPaged(playlistId))
+  const tracks = (
+    await spinner(
+      getPlaylistTracksPaged(playlistId),
+      `Fetching tracks in spotify playlist ${playlistId}`
+    )
+  )
     .filter((result) => !result.is_local)
     .map((result) => result.track)
-  console.log('tracks', tracks.length)
+  console.error(`Found ${tracks.length} tracks`)
 
   // select a track at random from the playlist
   const track = tracks[random.int(0, tracks.length - 1)]
-  // console.log('track', JSON.stringify(track, null, 2))
 
-  // format and tweet a single track
+  // tweet the track
   if (track) {
     const tweet = await formatAndTweetTrack({ twitterClient, track })
     const tweetUrl = `https://twitter.com/${tweet.user.screen_name}/status/${tweet.id_str}`
     console.log(tweetUrl)
-    // console.log(JSON.stringify(tweet, null, 2))
+    // console.error(JSON.stringify(tweet, null, 2))
   }
 
   return tracks
@@ -94,9 +105,9 @@ function formatAndTweetTrack(opts) {
     hasEmoji ? ' ' + suffix : ''
   }\n\n${tagsString2}${url}`
 
-  console.log()
-  console.log(status)
-  console.log()
+  console.error()
+  console.error(status)
+  console.error()
 
   return twitterClient.post('statuses/update', {
     status
