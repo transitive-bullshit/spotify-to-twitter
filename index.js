@@ -39,6 +39,20 @@ async function main() {
     'Initializing twitter'
   )
 
+  /*
+  const rawTweets = await twitterClient.resolvePagedQuery(
+    'statuses/user_timeline',
+    {
+      include_rts: false
+    }
+  )
+
+  const tweets = rawTweets.map(unfurlTweet)
+  console.log(JSON.stringify(tweets, null, 2))
+
+  return
+  */
+
   const { id: playlistId } = spotifyClient.parse(spotifyPlaylist)
 
   // this is just a convenience wrapper for fetching all pages of a spotify result set
@@ -119,6 +133,18 @@ function sanitizeTrackName(name) {
     .replace(/\[[^\]]*\]/g, '')
     .replace(/\([^)]*\)/g, '')
     .trim()
+}
+
+function unfurlTweet(tweet) {
+  return tweet.entities.urls
+    .reverse()
+    .reduce(
+      (status, url) =>
+        status.substring(0, url.indices[0] > 0 ? url.indices[0] + 1 : 0) +
+        url.expanded_url +
+        status.substring(url.indices[1]),
+      tweet.full_text
+    )
 }
 
 main().catch((err) => {
