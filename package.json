@@ -15,8 +15,7 @@
     "random": "^2.2.0",
     "spotify-uri": "^2.0.0",
     "spotify-web-api-node": "^4.0.0",
-    "twitter-lite": "^0.13.0",
-    "twitter-text": "^3.1.0"
+    "twitter-lite": "^0.13.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
