@@ -53,7 +53,7 @@ Here's an ([example ambient playlist](https://open.spotify.com/playlist/2MgkBl2r
 
 Purely for fun: [LofiGrind](https://twitter.com/lofigrind). 🤓
 
-I was inspired by lofi DJs like [ChilledCow](https://twitter.com/ChilledCow?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor) who have created large followings by curating fresh music on a regular basis across [YouTube](https://www.youtube.com/channel/UCSJ4gkVC6NrvII8umztf0Ow), Twitter(https://twitter.com/ChilledCow?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor), [Spotify](https://open.spotify.com/user/chilledcow?si=VeqVRyGHTcqQylOesJ0PpA), etc.
+I was inspired by lofi DJs like [ChilledCow](https://twitter.com/ChilledCow?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor) who have created large followings by curating fresh music on a regular basis across [YouTube](https://www.youtube.com/channel/UCSJ4gkVC6NrvII8umztf0Ow), [Twitter](https://twitter.com/ChilledCow?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor), [Spotify](https://open.spotify.com/user/chilledcow?si=VeqVRyGHTcqQylOesJ0PpA), etc.
 
 ## License
 
