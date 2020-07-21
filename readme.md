@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://twitter.com/lofigrind" title="LofiGrind">
-    <img src="https://raw.githubusercontent.com/transitive-bullshit/spotify-to-twitter/master/media/lofigrind.jpg" alt="LofiGrind Twitter Account" />
+    <img src="https://raw.githubusercontent.com/transitive-bullshit/spotify-to-twitter/master/media/lofigrind.jpg" alt="LofiGrind Twitter Account" width="598" />
   </a>
 </p>
 
