@@ -22,7 +22,7 @@ const twitterAccessTokenSecret = process.env.TWITTER_USER_ACCESS_TOKEN_SECRET
 // https://open.spotify.com/playlist/2MgkBl2rQnPdF3WZ6ciajc?si=gF7XkYJLRBWo8lxoMKmySA
 const spotifyPlaylist = process.env.SPOTIFY_PLAYLIST
 
-async function main() {
+module.exports = async function main() {
   const spotifyClient = await spinner(
     spotify.getClient({
       accessToken: spotifyAccessToken,
@@ -135,6 +135,8 @@ function sanitizeTrackName(name) {
     .trim()
 }
 
-main().catch((err) => {
-  console.error(err)
-})
+if (!module.parent) {
+  module.exports().catch((err) => {
+    console.error(err)
+  })
+}
