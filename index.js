@@ -20,7 +20,7 @@ const twitterAccessTokenSecret = process.env.TWITTER_USER_ACCESS_TOKEN_SECRET
 
 // URL or ID of spotify playlist to pull tracks from
 // https://open.spotify.com/playlist/2MgkBl2rQnPdF3WZ6ciajc?si=gF7XkYJLRBWo8lxoMKmySA
-const spotifyPlaylist = 'spotify:playlist:2MgkBl2rQnPdF3WZ6ciajc'
+const spotifyPlaylist = process.env.SPOTIFY_PLAYLIST
 
 async function main() {
   const spotifyClient = await spinner(
@@ -133,18 +133,6 @@ function sanitizeTrackName(name) {
     .replace(/\[[^\]]*\]/g, '')
     .replace(/\([^)]*\)/g, '')
     .trim()
-}
-
-function unfurlTweet(tweet) {
-  return tweet.entities.urls
-    .reverse()
-    .reduce(
-      (status, url) =>
-        status.substring(0, url.indices[0] > 0 ? url.indices[0] + 1 : 0) +
-        url.expanded_url +
-        status.substring(url.indices[1]),
-      tweet.full_text
-    )
 }
 
 main().catch((err) => {

@@ -1,6 +1,8 @@
 {
   "name": "spotify-to-twitter",
+  "private": true,
   "version": "1.0.0",
+  "description": "Example of how to create an automated Twitter account that tweets tracks from a Spotify playlist.",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
